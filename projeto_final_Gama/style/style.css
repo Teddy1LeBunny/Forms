@@ -1,0 +1,22 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+input {
+    background-color: rgb(224, 243, 196);
+    height: 20px;
+    border-radius: 3px;
+    border-color: gainsboro;
+    border-style: round
+}
+
+button{
+    border: rouded ;
+    box-shadow: 4px 4px 3px gray ;
+}
+
+button:active{
+    box-shadow: -2px -2px 3px gray;
+    border-style:rouded;
+}
