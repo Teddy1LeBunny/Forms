@@ -13,6 +13,7 @@
         <script src="./js/telefone.js"></script>
         <script src="./backend/dados.js"></script>
         <script src="./js/alert.js"></script>
+        <script src="./js/cpf.js"></script>
     
     </head>
 
@@ -89,8 +90,9 @@
       <label>CPF:</label>
      </td>
      <td align="left">
-      <input type="text" class="form-control" id="cpf" placeholder="Digite o cpf" onended="valida()"  >
-     </td>
+      <input type="text" class="form-control" id="cpf" placeholder="Digite o cpf" oninput="mascaracpf(this, mcpf )" maxlength="14" >
+     <button type="button" onclick="valida()">Validar</button>
+    </td>
     </tr>
     <td>
         <label for="estado">Veículo Próprio:</label>
@@ -180,5 +182,5 @@
   <br />
   
 </body>
-<button type="button" class="btn btn-info" onclick="validar()"  > Enviar!</button>
+<button type="button" class="btn btn-info" onclick="validar()" > Enviar!</button>
 </html>
