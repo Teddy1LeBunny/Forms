@@ -1,62 +1,41 @@
 console.log ('Javascript carregado');
-
-function validaCPF(cpf){
-    console.log(cpf.length);
-    if(cpf.length != 11){
-        return false;  
-    }
-    else{
-    var numeros = cpf.substring(0, 9);
-    var digito = cpf.substring(9);
-
-    console.log(numeros);
-    console.log(digito);
-    
-    var soma = 0; 
-    for(i = 10; i > 1; i--){
-        soma += numeros.charAt(10 - i)* i;
-
-    }
-
-    var resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
-
-    if(resultado != digito.charAt(0)){
-      return false;  
-    }
-
-    soma = 0;
-    numeros = cpf.substring(0,10);
-
-    for (k = 11; k > 1; k--){
-        soma += numeros.charAt(11 - k) * k;
-    }
-
-    resultado = soma % 11 > 2 ? 0 : 11 - (soma % 11);
-
-    console.log(resultado);
-
-    if(resultado != numeros.charAt(1)){
-        return false;
-    }
-    return true;
-   }
-   
+function valida(){
+    if(valida_cpf(document.getElementById('cpf').value))
+        alert('CPF Válido');
+    else
+        alert('CPF Inválido');
 }
 
-function validacao(){
-    console.log('iniciando Validação de CPF');
-    document.getElementById('success').style.display = 'none';
-    document.getElementById('error').style.disply = 'none';
-
-    var cpf = document.getElementById('cpf_digitado').value;
-
-    var resultadoValidacao = validaCPF(cpf);
-
-    if(resultadoValidacao){
-        document.getElementById('success').style.display = 'block';
-    }
-    else{
-        document.getElementById('error').style.display = 'block';
-    }
+function valida_cpf(cpf){
+      var numeros, digitos, soma, i, resultado, digitos_iguais;
+      digitos_iguais = 1;
+      if (cpf.length < 11)
+            return false;
+      for (i = 0; i < cpf.length - 1; i++)
+            if (cpf.charAt(i) != cpf.charAt(i + 1))
+                  {
+                  digitos_iguais = 0;
+                  break;
+                  }
+      if (!digitos_iguais)
+            {
+            numeros = cpf.substring(0,9);
+            digitos = cpf.substring(9);
+            soma = 0;
+            for (i = 10; i > 1; i--)
+                  soma += numeros.charAt(10 - i) * i;
+            resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+            if (resultado != digitos.charAt(0))
+                  return false;
+            numeros = cpf.substring(0,10);
+            soma = 0;
+            for (i = 11; i > 1; i--)
+                  soma += numeros.charAt(11 - i) * i;
+            resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+            if (resultado != digitos.charAt(1))
+                  return false;
+            return true;
+            }
+      else
+            return false;
 }
-
